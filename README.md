@@ -6,22 +6,21 @@ Página para conectar egresados y estudiantes con empresas o servicios.
 
 ### Páginas del FrontEnd
     [] Página de Login
-    [] Inicio para alumnos
-    [] Inicio para empresas
-    [] Búsqueda de empresas para alumno
-    [] Búsqueda de alumnos por empresas
+    [] Inicio para alumnos (Inicio predeterminado y busqueda)
+    [] Inicio para empresas (Vacantes disponibles y busqueda de alumno)
     [] Página de cada empresa
-    [] etc
+    [] Página del CV.
 
 ### Crear BackEnd
     [] Crear código de api de preferencia Rest
-    [] Crear conexión a Base de Datos
+    [] Crear Base de Datos
     [] etc
 
 ### Crear Base de Datos
     [] Crear tabla para empresas
     [] Crear tabla para alumnos
-    [] etc
+    [] Crear tabla para vacantes
+    [] Crear tabla Curriculum
 
 ## Autenticación de Empresas y Alumnos??
     [] Averiguar cómo funciona en la UAM
