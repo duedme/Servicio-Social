@@ -12,15 +12,14 @@ Página para crear CV a traves de plantillas.
 ### Crear BackEnd
     [] Crear código de api con PHP
     [X] Crear Base de Datos
-    [] Generación de CV generado
-    []
+    [] Generación de CV
 
 ### Crear Base de Datos
-    [] Crear tabla para cursos
-    [] Crear tabla para usuarios
-    [] Crear tabla para habilidades
-    [] Crear tabla idiomas
-    [] Crear tabla experiencia
-    [] Crear tabla educación
-    [] Crear tabla datos personales
-    [] Crear tabla login
+    [X] Crear tabla para cursos
+    [X] Crear tabla para usuarios
+    [X] Crear tabla para habilidades
+    [X] Crear tabla idiomas
+    [X] Crear tabla experiencia
+    [X] Crear tabla educación
+    [X] Crear tabla datos personales
+    [X] Crear tabla login
