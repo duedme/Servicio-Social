@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="container">
-<form id="formulario" action="#" method="POST">
+<form id="formulario" action="registrar.php" method="POST">
 
         <!-- Usuarios -->
     <div class="seccion" id="datos-usuario">
@@ -25,8 +25,7 @@
         <input type="email" id="correo_usuario" name="correo_usuario" maxlength="50" required><br><br>
         <label for="contrasena_usuario">Contraseña:</label>
         <input type="text" id="contrasena_usuario" name="contrasena_usuario" maxlength="20" required><br><br>
-        <label for="matricula_usuario">Matrícula:</label>
-        <input type="text" id="matricula_usuario" name="matricula_usuario" maxlength="10" required><br><br>
+        
     </div>
 
 
@@ -34,7 +33,7 @@
 <div class="seccion" id="datos-personales">
     <h2>Datos Personales</h2>
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" maxlength="15" required><br><br>
+    <input type="text" id="nombre" name="nombre" maxlength="20" required><br><br>
     <label for="segundo_nombre">Segundo Nombre:</label>
     <input type="text" id="segundo_nombre" name="segundo_nombre" maxlength="15"><br><br>
     <label for="apellido_paterno">Apellido Paterno:</label>
@@ -42,7 +41,9 @@
     <label for="apellido_materno">Apellido Materno:</label>
     <input type="text" id="apellido_materno" name="apellido_materno" maxlength="20" required><br><br>
     <label for="licenciatura">Licenciatura:</label>
-    <input type="text" id="licenciatura" name="licenciatura" maxlength="35" required><br><br>
+    <input type="text" id="licenciatura" name="licenciatura" maxlength="50" required><br><br>
+    <label for="matricula_usuario">Matrícula:</label>
+        <input type="text" id="matricula_usuario" name="matricula_usuario" maxlength="10" required><br><br>
     <label for="estado">Estado:</label>
     <select id="estado" name="estado">
         <option value="Aguascalientes">Aguascalientes</option>
@@ -89,12 +90,12 @@
         <!-- Habilidades -->
     <div class="seccion" id="habilidades">
         <h2>Habilidades</h2>
-        <div class="habilidad">
+        <div id="con_habilidades" name ="con_habilidades"  class="habilidad">
             <label for="habilidad">Habilidad:</label>
             <input type="text" id="habilidad" name="habilidad" maxlength="30">
         </div>
-        <button type="button" class="eliminar-habilidad">Eliminar</button>
-        <button type="button" class="agregar-habilidad">Agregar otra habilidad</button> 
+        <button type="button" id="eliminar-habilidad" class="eliminar-habilidad">Eliminar</button>
+        <button type="button" id="agregar-habilidad" class="agregar-habilidad">Agregar otra habilidad</button>
     </div>
     
 
@@ -129,7 +130,7 @@
             <label for="institucion_curso">Institución:</label>
             <input type="text" id="institucion_curso" name="institucion_curso" maxlength="50" required><br><br>
             <label for="duracion_curso">Duración (horas):</label>
-            <input type="text" id="duracion_curso" name="duracion_curso" maxlength="4" required><br><br>
+            <input type="text" id="duracion_curso" name="duracion_curso" maxlength="3" required><br><br>
             <label for="mes_finalizacion_curso">Mes de Finalización:</label>
             <input type="text" id="mes_finalizacion_curso" name="mes_finalizacion_curso" maxlength="10" required><br><br>
             <label for="anio_finalizacion_curso">Año de Finalización:</label>
@@ -145,7 +146,7 @@
         <h2>Experiencia Laboral (Omitir si no cuentas con experiencia laboral)</h2>
         <div class="experiencia">
             <label for="nombre_empresa">Nombre de la Empresa:</label>
-            <input type="text" id="nombre_empresa" name="nombre_empresa" maxlength="50" required><br><br>
+            <input type="text" id="nombre_empresa" name="nombre_empresa" maxlength="60" required><br><br>
             <label for="puesto_empresa">Puesto:</label>
             <input type="text" id="puesto_empresa" name="puesto_empresa" maxlength="70" required><br><br>
             <label for="mes_inicio_empresa">Mes de Inicio:</label>
@@ -169,7 +170,7 @@
 <div class="seccion" id="educacion">
     <h2>Educación</h2>
     <label for="nombre_institucion">Nombre de la Institución:</label>
-    <input type="text" id="nombre_institucion" name="nombre_institucion" maxlength="60" required><br><br>
+    <input type="text" id="nombre_institucion" name="nombre_institucion" maxlength="70" required><br><br>
     <label for="nivel_institucion">Nivel de Educación:</label>
     <select id="nivel_institucion" name="nivel_institucion" required>
         <option value="">Seleccione un nivel</option>
@@ -194,73 +195,18 @@
 </select><br><br>
 </select><br><br>
 
-    <button type="submit">Enviar</button>
+     <!--  <input type = "submit" name = "register" value = "Enviar">   -->
+    <button type="submit" name = "register" >Enviar</button>
 
 </form>
 </div>
 
-        <script>
-            // Obtener referencias a los botones de agregar
-            const btnAgregarHabilidad = document.querySelector('.agregar-habilidad');
-            const btnAgregarIdioma = document.querySelector('.agregar-idioma');
-            const btnAgregarCurso = document.querySelector('.agregar-curso');
-            const btnAgregarExperiencia = document.querySelector('.agregar-experiencia');
-            const btnAgregarEducacion = document.querySelector('.agregar-educacion');
+<?php   
+include("registrar.php");
+?>
 
-            // Obtener referencias a las secciones que se pueden clonar
-            const seccionHabilidad = document.getElementById('habilidades');
-            const seccionIdioma = document.getElementById('idiomas');
-            const seccionCurso = document.getElementById('cursos');
-            const seccionExperiencia = document.getElementById('experiencia-laboral');
-            const seccionEducacion = document.getElementById('educacion');
 
-            // Agregar eventos de clic a los botones de agregar
-            btnAgregarHabilidad.addEventListener('click', agregarSeccion);
-            btnAgregarIdioma.addEventListener('click', agregarSeccion);
-            btnAgregarCurso.addEventListener('click', agregarSeccion);
-            btnAgregarExperiencia.addEventListener('click', agregarSeccion);
-            btnAgregarEducacion.addEventListener('click', agregarSeccion);
-
-            // Función para clonar la sección correspondiente y agregarla al formulario
-            function agregarSeccion(event) {
-                let seccionAClonar;
-
-                // Determinar qué sección se debe clonar según el botón que se hizo clic
-                switch (event.target) {
-                    case btnAgregarHabilidad:
-                        seccionAClonar = seccionHabilidad.cloneNode(true);
-                        break;
-                    case btnAgregarIdioma:
-                        seccionAClonar = seccionIdioma.cloneNode(true);
-                        break;
-                    case btnAgregarCurso:
-                        seccionAClonar = seccionCurso.cloneNode(true);
-                        break;
-                    case btnAgregarExperiencia:
-                        seccionAClonar = seccionExperiencia.cloneNode(true);
-                        break;
-                    case btnAgregarEducacion:
-                        seccionAClonar = seccionEducacion.cloneNode(true);
-                        break;
-                    default:
-                        return;
-                }
-
-                // Limpiar los valores de los campos clonados
-                limpiarCampos(seccionAClonar);
-
-                // Agregar la sección clonada al formulario
-                document.getElementById('formulario').appendChild(seccionAClonar);
-            }
-
-            // Función para limpiar los valores de los campos clonados
-            function limpiarCampos(seccion) {
-                const campos = seccion.querySelectorAll('input, select, textarea');
-                campos.forEach(campo => {
-                    campo.value = '';
-                });
-            }
-        </script>
+<script src="script.js"></script>
 
 </body>
 </html>
