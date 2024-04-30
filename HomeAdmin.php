@@ -80,7 +80,7 @@ $result = $conexion->query($sql);
 
         // Agregar un evento de escucha para detectar cambios en el campo de búsqueda
         searchInput.addEventListener('input', function() {
-            // Obtener el valor del campo de búsqueda
+            // Obtener el valor del campo de búsquedaHOLA
             var searchTerm = searchInput.value.toLowerCase();
 
             // Iterar sobre las filas de la tabla y mostrar/ocultar según el término de búsqueda
