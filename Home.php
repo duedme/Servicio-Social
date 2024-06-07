@@ -206,7 +206,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['correo_usuario']) && $_SE
         <button type="submit">Guardar</button>
     </form>
 
-    <!-- Formularios de edición -->
+    <!-- Formularios de edición   -->
     <form id="form_editar_datos_personales" method="POST" action="Actualizar/ActualizarDatosPersonales.php">
         <h2>Editar Datos Personales</h2>
         <input type="hidden" id="id_datos_editar" name="id_datos">
