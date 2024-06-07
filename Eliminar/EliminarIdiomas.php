@@ -7,13 +7,9 @@ if (isset($_SESSION["id_usuario"])) {
 
     $sql = "DELETE FROM Idiomas WHERE id_idioma = $id_idioma";
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "<script>alert('Datos de idiomas eliminados correctamente.'); window.history.back();</script>";
-    } else {
-        echo "<script>alert('Error: " . $conexion->error . "'); window.history.back();</script>";
-    }
-
+    $conexion->query($sql);
     $conexion->close();
+    header('Location: ../Home.php');
 } else {
     header('location: ../Index.php');
 }

@@ -17,6 +17,10 @@ if (isset($_SESSION["id_usuario"])) {
     $sqlExperiencia = "SELECT * FROM ExperienciaL WHERE id_usuario = $id_usuario";
     $resultExperiencia = $conexion->query($sqlExperiencia);
 
+    // Consultar cursos
+    $sqlCursos = "SELECT * FROM Cursos WHERE id_usuario = $id_usuario";
+    $resultCursos = $conexion->query($sqlCursos);
+
     // Consultar habilidades
     $sqlHabilidades = "SELECT * FROM Habilidades WHERE id_usuario = $id_usuario";
     $resultHabilidades = $conexion->query($sqlHabilidades);
@@ -111,6 +115,22 @@ if (isset($_SESSION["id_usuario"])) {
                 <div class="date"><?php echo $row['mes_inicio_empresa'] . ' ' . $row['anio_inicio_empresa'] . ' - ' . $row['mes_finalizacion_empresa'] . ' ' . $row['anio_finalizacion_empresa']; ?></div>
                 <div class="description"><?php echo $row['puesto_empresa']; ?></div>
                 <div class="description"><?php echo $row['descripcion_empresa']; ?></div>
+            </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($resultCursos->num_rows > 0): ?>
+    <div class="cv-section">
+        <h2>Cursos</h2>
+        <ul>
+            <?php while($row = $resultCursos->fetch_assoc()): ?>
+            <li>
+                <div class="institution"><?php echo $row['nombre_curso']; ?></div>
+                <div class="date"><?php echo $row['mes_finalizacion_curso'] . ' ' . $row['anio_finalizacion_curso']; ?></div>
+                <div class="description"><?php echo $row['institucion_curso']; ?></div>
+                <div class="description"><?php echo $row['duracion_curso'] . ' horas'; ?></div>
             </li>
             <?php endwhile; ?>
         </ul>

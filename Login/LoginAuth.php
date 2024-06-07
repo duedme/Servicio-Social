@@ -30,7 +30,12 @@ if (isset($_POST['Correo']) && isset($_POST['Contrasena'])) {
                 $_SESSION['id_usuario'] = $usuario['id_usuario'];
                 $_SESSION['correo_usuario'] = $usuario['correo_usuario'];
                 $_SESSION['rol_usuario'] = $usuario['rol_usuario'];
-                header('Location: ../Index.php');
+
+                if ($usuario['rol_usuario'] == 1) {
+                    header('Location: ../HomeAdmin.php');
+                } else {
+                    header('Location: ../Home.php');
+                }
                 exit();
             } else {
                 // Contraseña incorrecta

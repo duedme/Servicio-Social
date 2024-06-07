@@ -7,13 +7,9 @@ if (isset($_SESSION["id_usuario"])) {
 
     $sql = "DELETE FROM Educacion WHERE id_educacion = $id_educacion";
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "<script>alert('Datos de educación eliminados correctamente.'); window.history.back();</script>";
-    } else {
-        echo "<script>alert('Error: " . $conexion->error . "'); window.history.back();</script>";
-    }
-
+    $conexion->query($sql);
     $conexion->close();
+    header('Location: ../Home.php');
 } else {
     header('location: ../Index.php');
 }

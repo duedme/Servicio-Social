@@ -15,13 +15,9 @@ if (isset($_SESSION["id_usuario"])) {
     $sql = "INSERT INTO ExperienciaL (nombre_empresa, puesto_empresa, mes_inicio_empresa, anio_inicio_empresa, mes_finalizacion_empresa, anio_finalizacion_empresa, descripcion_empresa, id_usuario) 
             VALUES ('$nombre_empresa', '$puesto_empresa', '$mes_inicio_empresa', '$anio_inicio_empresa', '$mes_finalizacion_empresa', '$anio_finalizacion_empresa', '$descripcion_empresa', $id_usuario)";
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "<script>alert('Datos de experiencia guardados correctamente.'); window.history.back();</script>";
-    } else {
-        echo "<script>alert('Error: " . $sql . " - " . $conexion->error . "'); window.history.back();</script>";
-    }
-
+    $conexion->query($sql);
     $conexion->close();
+    header('Location: ../Home.php');
 } else {
     header('location: ../Index.php');
 }

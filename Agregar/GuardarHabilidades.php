@@ -8,13 +8,9 @@ if (isset($_SESSION["id_usuario"])) {
 
     $sql = "INSERT INTO Habilidades (habilidad, id_usuario) VALUES ('$habilidad', $id_usuario)";
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "<script>alert('Datos de habilidades guardados correctamente.'); window.history.back();</script>";
-    } else {
-        echo "<script>alert('Error: " . $sql . " - " . $conexion->error . "'); window.history.back();</script>";
-    }
-
+    $conexion->query($sql);
     $conexion->close();
+    header('Location: ../Home.php');
 } else {
     header('location: ../Index.php');
 }

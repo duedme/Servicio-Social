@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
+if (isset($_SESSION['id_usuario']) && isset($_SESSION['correo_usuario']) && $_SESSION['rol_usuario'] == 2) {
     $correo_usuario = $_SESSION['correo_usuario'];
     $id_usuario = $_SESSION['id_usuario'];
     include_once('Config/Conexion.php');
@@ -55,6 +55,7 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
         <a href="#" id="experiencia">Experiencia</a>
         <a href="#" id="habilidades">Habilidades</a>
         <a href="#" id="idiomas">Idiomas</a>
+        <a href="#" id="cursos">Cursos</a>
         <a href="Login/CerrarSesion.php">Cerrar Sesión</a>
     </div>
 
@@ -180,6 +181,180 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
         <button type="submit">Guardar</button>
     </form>
 
+    <form id="form_cursos" method="POST" action="Agregar/GuardarCursos.php">
+        <h2>Agregar Cursos</h2>
+        <div>
+            <label for="nombre_curso">Nombre del Curso:</label>
+            <input type="text" id="nombre_curso" name="nombre_curso" required>
+        </div>
+        <div>
+            <label for="institucion_curso">Institución:</label>
+            <input type="text" id="institucion_curso" name="institucion_curso" required>
+        </div>
+        <div>
+            <label for="duracion_curso">Duración:</label>
+            <input type="text" id="duracion_curso" name="duracion_curso" required>
+        </div>
+        <div>
+            <label for="mes_finalizacion_curso">Mes de Finalización:</label>
+            <input type="text" id="mes_finalizacion_curso" name="mes_finalizacion_curso" required>
+        </div>
+        <div>
+            <label for="anio_finalizacion_curso">Año de Finalización:</label>
+            <input type="text" id="anio_finalizacion_curso" name="anio_finalizacion_curso" required>
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <!-- Formularios de edición -->
+    <form id="form_editar_datos_personales" method="POST" action="Actualizar/ActualizarDatosPersonales.php">
+        <h2>Editar Datos Personales</h2>
+        <input type="hidden" id="id_datos_editar" name="id_datos">
+        <div>
+            <label for="nombre_datos_editar">Nombre:</label>
+            <input type="text" id="nombre_datos_editar" name="nombre_datos" required>
+        </div>
+        <div>
+            <label for="licenciatura_datos_editar">Licenciatura:</label>
+            <input type="text" id="licenciatura_datos_editar" name="licenciatura_datos" required>
+        </div>
+        <div>
+            <label for="matricula_datos_editar">Matrícula:</label>
+            <input type="text" id="matricula_datos_editar" name="matricula_datos" required>
+        </div>
+        <div>
+            <label for="ciudad_datos_editar">Ciudad:</label>
+            <input type="text" id="ciudad_datos_editar" name="ciudad_datos" required>
+        </div>
+        <div>
+            <label for="telefono_datos_editar">Teléfono:</label>
+            <input type="text" id="telefono_datos_editar" name="telefono_datos" required>
+        </div>
+        <div>
+            <label for="correo_datos_editar">Correo:</label>
+            <input type="email" id="correo_datos_editar" name="correo_datos" required>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form id="form_editar_educacion" method="POST" action="Actualizar/ActualizarEducacion.php">
+        <h2>Editar Educación</h2>
+        <input type="hidden" id="id_educacion_editar" name="id_educacion">
+        <div>
+            <label for="nombre_institucion_editar">Nombre de la Institución:</label>
+            <input type="text" id="nombre_institucion_editar" name="nombre_institucion" required>
+        </div>
+        <div>
+            <label for="nivel_institucion_editar">Nivel:</label>
+            <input type="text" id="nivel_institucion_editar" name="nivel_institucion" required>
+        </div>
+        <div>
+            <label for="especialidad_institucion_editar">Especialidad:</label>
+            <input type="text" id="especialidad_institucion_editar" name="especialidad_institucion" required>
+        </div>
+        <div>
+            <label for="mes_inicio_institucion_editar">Mes de Inicio:</label>
+            <input type="text" id="mes_inicio_institucion_editar" name="mes_inicio_institucion" required>
+        </div>
+        <div>
+            <label for="anio_inicio_institucion_editar">Año de Inicio:</label>
+            <input type="text" id="anio_inicio_institucion_editar" name="anio_inicio_institucion" required>
+        </div>
+        <div>
+            <label for="mes_finalizacion_institucion_editar">Mes de Finalización:</label>
+            <input type="text" id="mes_finalizacion_institucion_editar" name="mes_finalizacion_institucion" required>
+        </div>
+        <div>
+            <label for="anio_finalizacion_institucion_editar">Año de Finalización:</label>
+            <input type="text" id="anio_finalizacion_institucion_editar" name="anio_finalizacion_institucion" required>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form id="form_editar_experiencia" method="POST" action="Actualizar/ActualizarExperiencia.php">
+        <h2>Editar Experiencia</h2>
+        <input type="hidden" id="id_experiencia_editar" name="id_experiencia">
+        <div>
+            <label for="nombre_empresa_editar">Nombre Empresa:</label>
+            <input type="text" id="nombre_empresa_editar" name="nombre_empresa" required>
+        </div>
+        <div>
+            <label for="puesto_empresa_editar">Puesto:</label>
+            <input type="text" id="puesto_empresa_editar" name="puesto_empresa" required>
+        </div>
+        <div>
+            <label for="mes_inicio_empresa_editar">Mes de Inicio:</label>
+            <input type="text" id="mes_inicio_empresa_editar" name="mes_inicio_empresa" required>
+        </div>
+        <div>
+            <label for="anio_inicio_empresa_editar">Año de Inicio:</label>
+            <input type="text" id="anio_inicio_empresa_editar" name="anio_inicio_empresa" required>
+        </div>
+        <div>
+            <label for="mes_finalizacion_empresa_editar">Mes de Finalización:</label>
+            <input type="text" id="mes_finalizacion_empresa_editar" name="mes_finalizacion_empresa" required>
+        </div>
+        <div>
+            <label for="anio_finalizacion_empresa_editar">Año de Finalización:</label>
+            <input type="text" id="anio_finalizacion_empresa_editar" name="anio_finalizacion_empresa" required>
+        </div>
+        <div>
+            <label for="descripcion_empresa_editar">Descripción:</label>
+            <textarea id="descripcion_empresa_editar" name="descripcion_empresa" required></textarea>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form id="form_editar_habilidades" method="POST" action="Actualizar/ActualizarHabilidad.php">
+        <h2>Editar Habilidades</h2>
+        <input type="hidden" id="id_habilidades_editar" name="id_habilidades">
+        <div>
+            <label for="habilidad_editar">Habilidad:</label>
+            <input type="text" id="habilidad_editar" name="habilidad" required>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form id="form_editar_idiomas" method="POST" action="Actualizar/ActualizarIdioma.php">
+        <h2>Editar Idiomas</h2>
+        <input type="hidden" id="id_idioma_editar" name="id_idioma">
+        <div>
+            <label for="nombre_idioma_editar">Idioma:</label>
+            <input type="text" id="nombre_idioma_editar" name="nombre_idioma" required>
+        </div>
+        <div>
+            <label for="nivel_idioma_editar">Nivel:</label>
+            <input type="text" id="nivel_idioma_editar" name="nivel_idioma" required>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form id="form_editar_cursos" method="POST" action="Actualizar/ActualizarCursos.php">
+        <h2>Editar Cursos</h2>
+        <input type="hidden" id="id_curso_editar" name="id_curso">
+        <div>
+            <label for="nombre_curso_editar">Nombre del Curso:</label>
+            <input type="text" id="nombre_curso_editar" name="nombre_curso" required>
+        </div>
+        <div>
+            <label for="institucion_curso_editar">Institución:</label>
+            <input type="text" id="institucion_curso_editar" name="institucion_curso" required>
+        </div>
+        <div>
+            <label for="duracion_curso_editar">Duración:</label>
+            <input type="text" id="duracion_curso_editar" name="duracion_curso" required>
+        </div>
+        <div>
+            <label for="mes_finalizacion_curso_editar">Mes de Finalización:</label>
+            <input type="text" id="mes_finalizacion_curso_editar" name="mes_finalizacion_curso" required>
+        </div>
+        <div>
+            <label for="anio_finalizacion_curso_editar">Año de Finalización:</label>
+            <input type="text" id="anio_finalizacion_curso_editar" name="anio_finalizacion_curso" required>
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+
     <script>
         // Obtener referencias a los elementos del menú y la sección de consultas
         var cvLink = document.getElementById('cv');
@@ -188,6 +363,7 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
         var experienciaLink = document.getElementById('experiencia');
         var habilidadesLink = document.getElementById('habilidades');
         var idiomasLink = document.getElementById('idiomas');
+        var cursosLink = document.getElementById('cursos');
         var consultaDiv = document.getElementById('consulta');
 
         // Obtener referencias a los formularios
@@ -196,6 +372,14 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
         var formExperiencia = document.getElementById('form_experiencia');
         var formHabilidades = document.getElementById('form_habilidades');
         var formIdiomas = document.getElementById('form_idiomas');
+        var formCursos = document.getElementById('form_cursos');
+
+        var formEditarDatosPersonales = document.getElementById('form_editar_datos_personales');
+        var formEditarEducacion = document.getElementById('form_editar_educacion');
+        var formEditarExperiencia = document.getElementById('form_editar_experiencia');
+        var formEditarHabilidades = document.getElementById('form_editar_habilidades');
+        var formEditarIdiomas = document.getElementById('form_editar_idiomas');
+        var formEditarCursos = document.getElementById('form_editar_cursos');
 
         // Función para ocultar todos los formularios
         function ocultarFormularios() {
@@ -204,6 +388,24 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             formExperiencia.style.display = 'none';
             formHabilidades.style.display = 'none';
             formIdiomas.style.display = 'none';
+            formCursos.style.display = 'none';
+            formEditarDatosPersonales.style.display = 'none';
+            formEditarEducacion.style.display = 'none';
+            formEditarExperiencia.style.display = 'none';
+            formEditarHabilidades.style.display = 'none';
+            formEditarIdiomas.style.display = 'none';
+            formEditarCursos.style.display = 'none';
+        }
+
+        // Función para mostrar el formulario de edición con los datos actuales
+        function mostrarFormularioEdicion(formulario, datos) {
+            for (var campo in datos) {
+                var elemento = formulario.querySelector('[name="' + campo + '"]');
+                if (elemento) {
+                    elemento.value = datos[campo];
+                }
+            }
+            formulario.style.display = 'block';
         }
 
         // Agregar eventos de clic para cada opción del menú
@@ -221,23 +423,27 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             $result = $conexion->query($sql);
             ?>
             // Mostrar los datos personales como una lista
-            var datosPersonales = "<h2>Datos Personales</h2><ul id='datos_personales'>";
+            var datosPersonales = "<h2>Datos Personales</h2><ul>";
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "datosPersonales += \"<li><strong>Nombre:</strong> " . $row["nombre_datos"] . "</li>\";";
-                    echo "datosPersonales += \"<li><strong>Matrícula:</strong> " . $row["matricula_datos"] . "</li>\";";
-                    echo "datosPersonales += \"<li><strong>Correo:</strong> " . $row["correo_datos"] . "</li>\";";
-                    echo "datosPersonales += \"<li><strong>Teléfono:</strong> " . $row["telefono_datos"] . "</li>\";";
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "datosPersonales += '<li><strong>Nombre:</strong> " . $row["nombre_datos"] . "</li>';";
+                    echo "datosPersonales += '<li><strong>Licenciatura:</strong> " . $row["licenciatura_datos"] . "</li>';";
+                    echo "datosPersonales += '<li><strong>Matrícula:</strong> " . $row["matricula_datos"] . "</li>';";
+                    echo "datosPersonales += '<li><strong>Ciudad:</strong> " . $row["ciudad_datos"] . "</li>';";
+                    echo "datosPersonales += '<li><strong>Correo:</strong> " . $row["correo_datos"] . "</li>';";
+                    echo "datosPersonales += '<li><strong>Teléfono:</strong> " . $row["telefono_datos"] . "</li>';";
                     echo "datosPersonales += \"<form method='POST' action='Eliminar/EliminarDatosPersonales.php' style='display:inline;'>\";";
                     echo "datosPersonales += \"<input type='hidden' name='id_datos' value='" . $row["id_datos"] . "'>\";";
                     echo "datosPersonales += \"<button type='submit'>Eliminar</button>\";";
                     echo "datosPersonales += \"</form>\";";
-                    echo "datosPersonales += \"<br>\";"; // 
-                    echo "datosPersonales += \"<br>\";";
+                    echo "datosPersonales += '<button onclick=\'editarDatosPersonales(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "datosPersonales += '<br>';";
+                    echo "datosPersonales += '<br>';";
                 }
             } else {
-                echo "datosPersonales += \"<li>No se encontraron datos personales.</li>\";";
+                echo "datosPersonales += '<li>No se encontraron datos personales.</li>';";
             }
             ?>
             datosPersonales += "</ul>";
@@ -258,22 +464,24 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "educacion += \"<li><strong>Nombre de la Institución:</strong> " . $row["nombre_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Nivel:</strong> " . $row["nivel_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Especialidad:</strong> " . $row["especialidad_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Mes de Inicio:</strong> " . $row["mes_inicio_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Año de Inicio:</strong> " . $row["anio_inicio_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Mes de Finalización:</strong> " . $row["mes_finalizacion_institucion"] . "</li>\";";
-                    echo "educacion += \"<li><strong>Año de Finalización:</strong> " . $row["anio_finalizacion_institucion"] . "</li>\";";
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "educacion += '<li><strong>Nombre de la Institución:</strong> " . $row["nombre_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Nivel:</strong> " . $row["nivel_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Especialidad:</strong> " . $row["especialidad_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Mes de Inicio:</strong> " . $row["mes_inicio_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Año de Inicio:</strong> " . $row["anio_inicio_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Mes de Finalización:</strong> " . $row["mes_finalizacion_institucion"] . "</li>';";
+                    echo "educacion += '<li><strong>Año de Finalización:</strong> " . $row["anio_finalizacion_institucion"] . "</li>';";
                     echo "educacion += \"<form method='POST' action='Eliminar/EliminarEducacion.php' style='display:inline;'>\";";
                     echo "educacion += \"<input type='hidden' name='id_educacion' value='" . $row["id_educacion"] . "'>\";";
                     echo "educacion += \"<button type='submit'>Eliminar</button>\";";
                     echo "educacion += \"</form>\";";
-                    echo "educacion += \"<br>\";"; // Añadir un salto de línea después de cada registro
-                    echo "educacion += \"<br>\";";
+                    echo "educacion += '<button onclick=\'editarEducacion(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "educacion += '<br>';";
+                    echo "educacion += '<br>';";
                 }
             } else {
-                echo "educacion += \"<li>No se encontraron datos de educación.</li>\";";
+                echo "educacion += '<li>No se encontraron datos de educación.</li>';";
             }
             ?>
             educacion += "</ul>";
@@ -294,22 +502,24 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "experiencia += \"<li><strong>Nombre Empresa:</strong> " . $row["nombre_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Puesto:</strong> " . $row["puesto_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Mes de Inicio:</strong> " . $row["mes_inicio_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Año de Inicio:</strong> " . $row["anio_inicio_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Mes de Finalización:</strong> " . $row["mes_finalizacion_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Año de Finalización:</strong> " . $row["anio_finalizacion_empresa"] . "</li>\";";
-                    echo "experiencia += \"<li><strong>Descripción:</strong> " . $row["descripcion_empresa"] . "</li>\";";
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "experiencia += '<li><strong>Nombre Empresa:</strong> " . $row["nombre_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Puesto:</strong> " . $row["puesto_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Mes de Inicio:</strong> " . $row["mes_inicio_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Año de Inicio:</strong> " . $row["anio_inicio_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Mes de Finalización:</strong> " . $row["mes_finalizacion_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Año de Finalización:</strong> " . $row["anio_finalizacion_empresa"] . "</li>';";
+                    echo "experiencia += '<li><strong>Descripción:</strong> " . $row["descripcion_empresa"] . "</li>';";
                     echo "experiencia += \"<form method='POST' action='Eliminar/EliminarExperiencia.php' style='display:inline;'>\";";
                     echo "experiencia += \"<input type='hidden' name='id_experiencia' value='" . $row["id_experiencia"] . "'>\";";
                     echo "experiencia += \"<button type='submit'>Eliminar</button>\";";
                     echo "experiencia += \"</form>\";";
-                    echo "experiencia += \"<br>\";";
-                    echo "experiencia += \"<br>\";";// Añadir un salto de línea después de cada registro
+                    echo "experiencia += '<button onclick=\'editarExperiencia(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "experiencia += '<br>';";
+                    echo "experiencia += '<br>';";
                 }
             } else {
-                echo "experiencia += \"<li>No se encontraron datos de experiencia.</li>\";";
+                echo "experiencia += '<li>No se encontraron datos de experiencia.</li>';";
             }
             ?>
             experiencia += "</ul>";
@@ -330,28 +540,18 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                   
-
-                    /*  
-                    echo "habilidades += \"<li><strong>Habilidad:</strong> " . $row["habilidad"] . "</li>\";";
-                    echo "habilidades += \"<form method='POST' action='Eliminar/EliminarHabilidades.php' style='display:inline;'>\";";
-                    echo "habilidades += \"<input type='hidden' name='id_habilidad' value='" . $row["id_habilidad"] . "'>\";";
-                    echo "habilidades += \"<button type='submit'>Eliminar</button>\";";
-                    echo "habilidades += \"</form>\";";
-                    echo "habilidades += \"<br>\";"; // Añadir un salto de línea después de cada registro
-                    */
-                   
-                    echo "habilidades += \"<li><strong>Habilidad:</strong> " . $row["habilidad"] . "</li>\";";
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "habilidades += '<li><strong>Habilidad:</strong> " . $row["habilidad"] . "</li>';";
                     echo "habilidades += \"<form method='POST' action='Eliminar/EliminarHabilidades.php' style='display:inline;'>\";";
                     echo "habilidades += \"<input type='hidden' name='id_habilidades' value='" . $row["id_habilidades"] . "'>\";";
                     echo "habilidades += \"<button type='submit'>Eliminar</button>\";";
                     echo "habilidades += \"</form>\";";
-                    echo "habilidades += \"<br>\";"; // Añadir un salto de línea después de cada registro
-                    echo "habilidades += \"<br>\";";
-                
+                    echo "habilidades += '<button onclick=\'editarHabilidad(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "habilidades += '<br>';";
+                    echo "habilidades += '<br>';";
                 }
             } else {
-                echo "habilidades += \"<li>No se encontraron datos de habilidades.</li>\";";
+                echo "habilidades += '<li>No se encontraron datos de habilidades.</li>';";
             }
             ?>
             habilidades += "</ul>";
@@ -372,18 +572,19 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             <?php
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "idiomas += \"<li><strong>Idioma:</strong> " . $row["nombre_idioma"] . "</li>\";";
-                    echo "idiomas += \"<li><strong>Nivel:</strong> " . $row["nivel_idioma"] . "</li>\";";
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "idiomas += '<li><strong>Idioma:</strong> " . $row["nombre_idioma"] . "</li>';";
+                    echo "idiomas += '<li><strong>Nivel:</strong> " . $row["nivel_idioma"] . "</li>';";
                     echo "idiomas += \"<form method='POST' action='Eliminar/EliminarIdiomas.php' style='display:inline;'>\";";
                     echo "idiomas += \"<input type='hidden' name='id_idioma' value='" . $row["id_idioma"] . "'>\";";
                     echo "idiomas += \"<button type='submit'>Eliminar</button>\";";
                     echo "idiomas += \"</form>\";";
-                    echo "idiomas += \"<br>\";"; // Añadir un salto de línea después de cada registro
-                    echo "idiomas += \"<br>\";";
-                    echo "idiomas += \"<br>\";";
+                    echo "idiomas += '<button onclick=\'editarIdioma(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "idiomas += '<br>';";
+                    echo "idiomas += '<br>';";
                 }
             } else {
-                echo "idiomas += \"<li>No se encontraron datos de idiomas.</li>\";";
+                echo "idiomas += '<li>No se encontraron datos de idiomas.</li>';";
             }
             ?>
             idiomas += "</ul>";
@@ -391,8 +592,72 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
             formIdiomas.style.display = 'block';
         });
 
+        cursosLink.addEventListener('click', function() {
+            ocultarFormularios();
+            formCursos.style.display = 'block';
+            // Consulta para obtener los cursos del usuario
+            <?php
+            $sql = "SELECT * FROM Cursos WHERE id_usuario = $id_usuario";
+            $result = $conexion->query($sql);
+            ?>
+            // Mostrar los cursos como una lista
+            var cursos = "<h2>Cursos</h2><ul>";
+            <?php
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $rowJSON = json_encode($row, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+                    echo "cursos += '<li><strong>Nombre del Curso:</strong> " . $row["nombre_curso"] . "</li>';";
+                    echo "cursos += '<li><strong>Institución:</strong> " . $row["institucion_curso"] . "</li>';";
+                    echo "cursos += '<li><strong>Duración:</strong> " . $row["duracion_curso"] . "</li>';";
+                    echo "cursos += '<li><strong>Mes de Finalización:</strong> " . $row["mes_finalizacion_curso"] . "</li>';";
+                    echo "cursos += '<li><strong>Año de Finalización:</strong> " . $row["anio_finalizacion_curso"] . "</li>';";
+                    echo "cursos += \"<form method='POST' action='Eliminar/EliminarCursos.php' style='display:inline;'>\";";
+                    echo "cursos += \"<input type='hidden' name='id_curso' value='" . $row["id_curso"] . "'>\";";
+                    echo "cursos += \"<button type='submit'>Eliminar</button>\";";
+                    echo "cursos += \"</form>\";";
+                    echo "cursos += '<button onclick=\'editarCurso(" . $rowJSON . ")\'>Editar</button>';";
+                    echo "cursos += '<br>';";
+                    echo "cursos += '<br>';";
+                }
+            } else {
+                echo "cursos += '<li>No se encontraron datos de cursos.</li>';";
+            }
+            ?>
+            cursos += "</ul>";
+            consultaDiv.innerHTML = cursos;
+            formCursos.style.display = 'block';
+        });
 
+        // Funciones para editar cada sección
+        function editarDatosPersonales(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarDatosPersonales, datos);
+        }
 
+        function editarEducacion(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarEducacion, datos);
+        }
+
+        function editarExperiencia(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarExperiencia, datos);
+        }
+
+        function editarHabilidad(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarHabilidades, datos);
+        }
+
+        function editarIdioma(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarIdiomas, datos);
+        }
+
+        function editarCurso(datos) {
+            ocultarFormularios();
+            mostrarFormularioEdicion(formEditarCursos, datos);
+        }
     </script>
 
 </body>
@@ -400,6 +665,6 @@ if (isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
 
 <?php 
 } else {
-    header('location: ../Index.php');
+    header('location: ../Login/Index.php');
 }
 ?>
