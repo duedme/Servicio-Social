@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
+if(isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario']) && $_SESSION['rol_usuario'] == 1) {
     $correo_usuario = $_SESSION['correo_usuario'];
 
     // Incluir el archivo de conexión a la base de datos
@@ -55,7 +55,7 @@ if(isset($_SESSION["id_usuario"]) && isset($_SESSION['correo_usuario'])) {
         FROM Usuarios 
         LEFT JOIN DatosPersonales ON Usuarios.id_usuario = DatosPersonales.id_usuario
         ORDER BY Usuarios.rol_usuario = 1 DESC";
-$result = $conexion->query($sql);
+        $result = $conexion->query($sql);
         // Iterar sobre los resultados y mostrar cada registro en una fila de la tabla
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
@@ -80,7 +80,7 @@ $result = $conexion->query($sql);
 
         // Agregar un evento de escucha para detectar cambios en el campo de búsqueda
         searchInput.addEventListener('input', function() {
-            // Obtener el valor del campo de búsquedaHOLA
+            // Obtener el valor del campo de búsqueda
             var searchTerm = searchInput.value.toLowerCase();
 
             // Iterar sobre las filas de la tabla y mostrar/ocultar según el término de búsqueda
@@ -100,6 +100,6 @@ $result = $conexion->query($sql);
 
 <?php 
 } else {
-    header('location: ../Index.php');
+    header('location: ../Login/Index.php');
 }
 ?>

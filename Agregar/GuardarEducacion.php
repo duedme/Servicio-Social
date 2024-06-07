@@ -15,13 +15,9 @@ if (isset($_SESSION["id_usuario"])) {
     $sql = "INSERT INTO Educacion (nombre_institucion, nivel_institucion, especialidad_institucion, mes_inicio_institucion, anio_inicio_institucion, mes_finalizacion_institucion, anio_finalizacion_institucion, id_usuario) 
             VALUES ('$nombre_institucion', '$nivel_institucion', '$especialidad_institucion', '$mes_inicio_institucion', '$anio_inicio_institucion', '$mes_finalizacion_institucion', '$anio_finalizacion_institucion', $id_usuario)";
 
-    if ($conexion->query($sql) === TRUE) {
-        echo "<script>alert('Datos de educación guardados correctamente.'); window.history.back();</script>";
-    } else {
-        echo "<script>alert('Error: " . $sql . " - " . $conexion->error . "'); window.history.back();</script>";
-    }
-
+    $conexion->query($sql);
     $conexion->close();
+    header('Location: ../Home.php');
 } else {
     header('location: ../Index.php');
 }

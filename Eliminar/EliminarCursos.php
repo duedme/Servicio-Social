@@ -3,9 +3,9 @@ session_start();
 if (isset($_SESSION["id_usuario"])) {
     include_once('../Config/Conexion.php');
 
-    $id_datos = $_POST['id_datos'];
+    $id_curso = $_POST['id_curso'];
 
-    $sql = "DELETE FROM DatosPersonales WHERE id_datos = $id_datos";
+    $sql = "DELETE FROM Cursos WHERE id_curso = $id_curso";
 
     $conexion->query($sql);
     $conexion->close();
@@ -13,4 +13,3 @@ if (isset($_SESSION["id_usuario"])) {
 } else {
     header('location: ../Index.php');
 }
-?>
